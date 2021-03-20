@@ -31,7 +31,7 @@ namespace MovieCollectionRevisited.DAL
         /// </summary>
         /// <param name="id">PK of the <typeparamref name="T"/> to return.</param>
         /// <returns>A <typeparamref name="T"/>.</returns>
-        T GetByID(long id);
+        T GetByID(object id);
 
         /// <summary>
         /// Adds a <typeparamref name="T"/> to the in-memory DbSet. Requires .Save to be called to persist to the Database.

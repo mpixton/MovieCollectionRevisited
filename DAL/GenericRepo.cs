@@ -72,7 +72,7 @@ namespace MovieCollectionRevisited.DAL
         /// </summary>
         /// <param name="id">PK of the <typeparamref name="T"/> to find.</param>
         /// <returns><typeparamref name="T"/> with PK of <paramref name="id"/>.</returns>
-        public virtual T GetByID(long id)
+        public virtual T GetByID(object id)
         {
             return _dbSet.Find(id);
         }

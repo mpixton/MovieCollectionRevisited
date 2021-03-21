@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MovieCollectionRevisited.Models.ViewModels
 {
+    /// <summary>
+    /// Hides Database fields when a user is creating a new Movie.
+    /// </summary>
     public class MovieForm
     {
         /// <summary>
@@ -49,11 +52,19 @@ namespace MovieCollectionRevisited.Models.ViewModels
         [StringLength(25, ErrorMessage = "Notes must be less than 25 characters!")]
         public string Notes { get; set; }
 
+        /// <summary>
+        /// Gives the MovieForm object a more meaningful name when being logged.
+        /// </summary>
+        /// <returns>{Title} by {Director} in {Year}</returns>
         public override string ToString()
         {
             return $"{Title} by {Director} in {Year}";
         }
 
+        /// <summary>
+        /// Allows a MovieForm to be implicitly converted to a Movie.
+        /// </summary>
+        /// <param name="movie">A new Movie object with properties mapped over.</param>
         public static implicit operator MovieForm(Movie movie) 
         {
             return new MovieForm
@@ -68,6 +79,10 @@ namespace MovieCollectionRevisited.Models.ViewModels
             };
         }
 
+        /// <summary>
+        /// Allows a Movie to be implicitly converted to a MovieForm. 
+        /// </summary>
+        /// <param name="form">A new MovieForm with properties mapped over.</param>
         public static implicit operator Movie(MovieForm form)
         {
             return new Movie

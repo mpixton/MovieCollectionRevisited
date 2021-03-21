@@ -27,10 +27,12 @@ namespace MovieCollectionRevisited
         {
             services.AddControllersWithViews();
 
+            // Add SqLite Db to the project.
             services.AddDbContext<RevisitedDbContext>(options => { 
                 options.UseSqlite(Configuration["ConnectionStrings:RevisitedConnection"]);
             });
 
+            // Register UnitOfWork for Dependency Injection with Controllers.
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 

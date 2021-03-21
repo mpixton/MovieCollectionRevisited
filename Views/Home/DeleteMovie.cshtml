@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Delete " + Model.Title;
+}
+
+@model Movie
+@*// TODO: Refactor out the form controls and leave the key.*@
+<form class="col-8" asp-controller="Home" asp-action="DeleteMovie" method="post">
+    <input asp-for="MovieID" hidden readonly />
+    <div class="row">
+        <label class="col" asp-for="Director">Director:</label>
+        <input class="col" asp-for="Director" readonly />
+    </div>
+    <div class="row">
+        <label asp-for="Edited">Edited?</label>
+        <input asp-for="Edited" readonly />
+    </div>
+    <div class="row">
+        <label asp-for="LentTo">Lent To:</label>
+        <input asp-for="LentTo" readonly />
+    </div>
+    <div class="row">
+        <label asp-for="Notes">Notes:</label>
+        <input asp-for="Notes" readonly />
+    </div>
+    <div class="row">
+        <label asp-for="Rating">Rating:</label>
+        <input asp-for="Rating" readonly />
+    </div>
+    <div class="row">
+        <label asp-for="Title">Title:</label>
+        <input asp-for="Title" readonly />
+    </div>
+    <div class="row">
+        <label asp-for="Year">Year:</label>
+        <input asp-for="Year" readonly />
+    </div>
+
+    <div class="col-8">
+        <div class="row">
+            <span class="col-12">Delete Movie?</span>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-success">Yes</button>
+            <button class="btn btn-danger">No</button>
+        </div>
+    </div>
+</form>

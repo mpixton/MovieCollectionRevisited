@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Movie>
+
+<div>
+    <table class="col-12">
+        <thead class="col-8">
+            <tr class="row">
+                <th class="text-center">
+                    <h3>Title</h3>
+                </th>
+                <th class="text-center">
+                    <h3>Director</h3>
+                </th>
+                <th class="text-center">
+                    <h3>Year</h3>
+                </th>
+                <th class="text-center">
+                    <h3>Rating</h3>
+                </th>
+                <th class="text-center">
+                    <h3>Edited?</h3>
+                </th>
+                <th class="text-center">
+                    <h3>Lent To</h3>
+                </th>
+                <th class="text-center">
+                    <h3>Notes</h3>
+                </th>
+                <th class="text-center">
+                    <h3></h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="col-8">
+
+            @foreach(Movie m in Model)
+            {
+                <tr class="row">
+                    <td style="font-size: 1.5rem">@m.Title</td>
+                    <td style="font-size: 1.5rem">@m.Director</td>
+                    <td style="font-size: 1.5rem">@m.Year</td>
+                    <td style="font-size: 1.5rem">@m.Rating</td>
+                    <td style="font-size: 1.5rem">@(m.Edited ? "Yes" : "No")</td>
+                    <td style="font-size: 1.5rem">@m.LentTo</td>
+                    <td style="font-size: 1.5rem">@m.Notes</td>
+                    <td style="font-size: 1.5rem">
+                        <partial name="_MovieEditButton" model="m" />
+                        <partial name="_MovieDeleteButton" model="m" />
+                    </td>
+                </tr>
+             }
+            </tbody>
+    </table>
+</div>

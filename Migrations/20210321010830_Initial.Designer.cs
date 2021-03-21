@@ -9,7 +9,7 @@ using MovieCollectionRevisited.DAL;
 namespace MovieCollectionRevisited.Migrations
 {
     [DbContext(typeof(RevisitedDbContext))]
-    [Migration("20210320213636_Initial")]
+    [Migration("20210321010830_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace MovieCollectionRevisited.Migrations
 
             modelBuilder.Entity("MovieCollectionRevisited.Models.Movie", b =>
                 {
-                    b.Property<long>("MovieID")
+                    b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 

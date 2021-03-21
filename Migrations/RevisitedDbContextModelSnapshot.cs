@@ -18,7 +18,7 @@ namespace MovieCollectionRevisited.Migrations
 
             modelBuilder.Entity("MovieCollectionRevisited.Models.Movie", b =>
                 {
-                    b.Property<long>("MovieID")
+                    b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 

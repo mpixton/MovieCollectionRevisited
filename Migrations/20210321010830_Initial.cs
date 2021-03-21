@@ -10,7 +10,7 @@ namespace MovieCollectionRevisited.Migrations
                 name: "Movies",
                 columns: table => new
                 {
-                    MovieID = table.Column<long>(type: "INTEGER", nullable: false)
+                    MovieID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Year = table.Column<int>(type: "INTEGER", nullable: false),

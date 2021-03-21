@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MovieCollectionRevisited.Models
 {
+    /// <summary>
+    /// Allows restricting entry of ratings to MPAA ratings only.
+    /// </summary>
     public enum RatingTypes
     {
         G = 0,
@@ -64,6 +67,10 @@ namespace MovieCollectionRevisited.Models
         [StringLength(25, ErrorMessage = "Notes must be less than 25 characters!")]
         public string Notes { get; set; }
 
+        /// <summary>
+        /// Gives the MovieForm object a more meaningful name when being logged.
+        /// </summary>
+        /// <returns>{Title} by {Director} in {Year}</returns>
         public override string ToString()
         {
             return $"{Title} by {Director} in {Year}";

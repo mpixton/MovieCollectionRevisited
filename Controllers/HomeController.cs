@@ -29,9 +29,14 @@ namespace MovieCollectionRevisited.Controllers
             return View();
         }
 
-        public IActionResult Podcasts()
+        public IActionResult Podcast()
         {
-            _logger.LogDebug("GET on Podcasts.");
+            _logger.LogDebug("GET on Podcast.");
+            return View();
+        }
+
+        public IActionResult Success()
+        {
             return View();
         }
 
@@ -48,9 +53,10 @@ namespace MovieCollectionRevisited.Controllers
             _logger.LogDebug($"POST on AddMovie with params: {form}.");
             if(ModelState.IsValid)
             {
-                _unitOfWork.MovieRepo.Insert(form);
+                Movie movie = form;
+                _unitOfWork.MovieRepo.Insert(movie);
                 _unitOfWork.Save();
-                return View("FilmList");
+                return RedirectToAction("Success");
             }
 
             return View(form);
@@ -67,40 +73,41 @@ namespace MovieCollectionRevisited.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditMovie(object id)
+        public IActionResult EditMovie(long MovieID)
         {
-            _logger.LogDebug($"GET on EditMovie with params: {id}.");
-            return View(_unitOfWork.MovieRepo.GetByID(id));
+            _logger.LogDebug($"GET on EditMovie with params: {MovieID}.");
+            return View(_unitOfWork.MovieRepo.GetByID(MovieID));
         }
 
         [HttpPost]
-        public IActionResult EditMovie(MovieForm form)
+        public IActionResult EditMovieSubmit(Movie form)
         {
             _logger.LogDebug($"POST on EditMovie with params: {form}.");
             if(ModelState.IsValid)
             {
                 _unitOfWork.MovieRepo.Update(form);
                 _unitOfWork.Save();
-                return View("FilmList");
+                return RedirectToAction("FilmList");
             }
             return View(form);
         }
 
         [HttpGet]
-        public IActionResult DeleteMovie(object id)
+        public IActionResult DeleteMovie(long MovieID)
         {
-            _logger.LogDebug($"GET on DeleteMovie with params: {id}.");
-            return View(_unitOfWork.MovieRepo.GetByID(id));
+            _logger.LogDebug($"GET on DeleteMovie with params: {MovieID}.");
+            return View(_unitOfWork.MovieRepo.GetByID(MovieID));
         }
 
-        [HttpGet]
-        public IActionResult DeleteMovie(MovieForm form)
+        [HttpPost]
+        public IActionResult DeleteMovie(Movie form)
         {
             _logger.LogDebug($"POST on DeletMovie with params: {form}.");
             if(ModelState.IsValid)
             {
                 _unitOfWork.MovieRepo.Delete(form);
                 _unitOfWork.Save();
+                return RedirectToAction("FilmList");
             }
             return View(form);
         }

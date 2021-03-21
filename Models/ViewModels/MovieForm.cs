@@ -49,6 +49,11 @@ namespace MovieCollectionRevisited.Models.ViewModels
         [StringLength(25, ErrorMessage = "Notes must be less than 25 characters!")]
         public string Notes { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Title} by {Director} in {Year}";
+        }
+
         public static implicit operator MovieForm(Movie movie) 
         {
             return new MovieForm

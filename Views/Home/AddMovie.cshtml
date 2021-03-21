@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add A Movie ";
+}
+
+@model MovieForm
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form asp-controller="Home" asp-action="AddMovie" method="post">
+            <label asp-for="Director">Director:</label>
+            <input asp-for="Director" />
+            @Html.ValidationMessageFor(m => m.Director)
+
+            <label asp-for="Edited">Edited?</label>
+            <input asp-for="Edited" />
+            @Html.ValidationMessageFor(m => m.Edited)
+
+            <label asp-for="LentTo">Lent To:</label>
+            <input asp-for="LentTo" />
+            @Html.ValidationMessageFor(m => m.LentTo)
+
+            <label asp-for="Notes">Notes:</label>
+            <input asp-for="Notes" />
+            @Html.ValidationMessageFor(m => m.Notes)
+
+            <label asp-for="Rating">Rating:</label>
+            @Html.DropDownListFor(m => m.Rating, Html.GetEnumSelectList(typeof(RatingTypes)), "Please choose a rating:")
+            @Html.ValidationMessageFor(m => m.Rating)
+
+            <label asp-for="Title">Title:</label>
+            <input asp-for="Title" />
+            @Html.ValidationMessageFor(m => m.Title)
+
+            <label asp-for="Year">Year:</label>
+            <input asp-for="Year" />
+            @Html.ValidationMessageFor(m => m.Year)
+
+            @Html.ValidationSummary()
+            <button class="btn btn-primary" type="submit">Add Movie</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>

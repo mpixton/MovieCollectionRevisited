@@ -58,9 +58,48 @@ namespace MovieCollectionRevisited
 
             app.UseEndpoints(endpoints =>
             {
+                // New pattern for all movies
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "allMovies",
+                    pattern: "AllMovies",
+                    new { Controller = "Home", action = "FilmList" }
+                    );
+
+                // New pattern for add movie
+                endpoints.MapControllerRoute(
+                    name: "addMovie",
+                    pattern: "AddMovie",
+                    new { Controller = "Home", action = "AddMovie" }
+                    );
+
+                // New pattern for edit movie
+                endpoints.MapControllerRoute(
+                    name: "editMovie",
+                    pattern: "EditMovie/{MovieID?}",
+                    new { Controller = "Home", action = "EditMovie" }
+                    );
+
+                // New pattern for delete movie
+                endpoints.MapControllerRoute(
+                    name: "deleteMovie",
+                    pattern: "DeleteMovie/{MovieID}",
+                    new { Controller = "Home", action = "DeleteMovie" }
+                    );
+
+                // New pattern for podcasts
+                endpoints.MapControllerRoute(
+                    name: "podcasts",
+                    pattern: "Podcast",
+                    new { Controller = "Home", action = "Podcast" }
+                    );
+
+                // New pattern for home
+                endpoints.MapControllerRoute(
+                    name: "home",
+                    pattern: "Home",
+                    new { Controller = "Home", action = "Home" });
+
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

@@ -106,7 +106,7 @@ namespace MovieCollectionRevisited.DAL
         /// </summary>
         /// <param name="id">PK of the <typeparamref name="T"/> to delete.</param>
         // TODO Add error handling if a wrong id is passed.
-        public virtual void Delete(object id)
+        public virtual void Delete(long id)
         {
             T objectToDelete = _dbSet.Find(id);
             _dbSet.Remove(objectToDelete);

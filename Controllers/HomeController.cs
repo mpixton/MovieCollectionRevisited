@@ -36,7 +36,7 @@ namespace MovieCollectionRevisited.Controllers
         /// <returns>Index view.</returns>
         public IActionResult Index()
         {
-            _logger.LogDebug("GET on Index.");
+            _logger.LogDebug("{1} on {2}", Request.Method, Request.Path.Value);
             return View();
         }
 
@@ -46,18 +46,7 @@ namespace MovieCollectionRevisited.Controllers
         /// <returns>Podcast view.</returns>
         public IActionResult Podcast()
         {
-            _logger.LogDebug($"{Request.Method} on Podcast.");
-            return View();
-        }
-
-        /// <summary>
-        /// GET: Home/Success
-        /// <para>Invoked after successful create.</para>
-        /// </summary>
-        /// <returns>Success view with buttons for the Index, FilmList, and AddMovie views.</returns>
-        public IActionResult Success()
-        {
-            _logger.LogDebug($"{Request.Method} on Sucees.");
+            _logger.LogDebug("{1} on {2}", Request.Method, Request.Path.Value);
             return View();
         }
 
@@ -69,7 +58,7 @@ namespace MovieCollectionRevisited.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
-            _logger.LogDebug($"{Request.Method} on AddMovie.");
+            _logger.LogDebug("{1} on {2}", Request.Method, Request.Path.Value);
             return View();
         }
 
@@ -83,7 +72,7 @@ namespace MovieCollectionRevisited.Controllers
         [HttpPost]
         public IActionResult AddMovie(MovieForm form)
         {
-            _logger.LogDebug($"{Request.Method} on AddMovie with params: {form}.");
+            _logger.LogDebug("{1} on {2} with params: {3}", Request.Method, Request.Path.Value, form);
             if(ModelState.IsValid)
             {
                 // Requires an implicit cast because the MovieRepo only stores
@@ -93,7 +82,8 @@ namespace MovieCollectionRevisited.Controllers
                 Movie movie = form;
                 _unitOfWork.MovieRepo.Insert(movie);
                 _unitOfWork.Save();
-                return RedirectToAction("Success");
+                _logger.LogDebug("Rerouting to Success");
+                return View("Success", form.Title);
             }
 
             return View(form);
@@ -105,7 +95,7 @@ namespace MovieCollectionRevisited.Controllers
         /// <returns>View with a list of all Movies in the Db.</returns>
         public IActionResult FilmList()
         {
-            _logger.LogDebug($"{Request.Method} on FilmList.");
+            _logger.LogDebug("{1} on {2}", Request.Method, Request.Path.Value);
             // Will never show the movie Independence Day cause its not as American as Rocky.
             return View(from m in _unitOfWork.MovieRepo.GetAll()
                         where m.Title != "Independence Day"
@@ -123,7 +113,7 @@ namespace MovieCollectionRevisited.Controllers
         [HttpGet]
         public IActionResult EditMovie(long MovieID)
         {
-            _logger.LogDebug($"{Request.Method} on EditMovie with params: {MovieID}.");
+            _logger.LogDebug("{1} on {2} with params: {3}", Request.Method, Request.Path.Value, MovieID);
             return View(_unitOfWork.MovieRepo.GetByID(MovieID));
         }
 
@@ -137,7 +127,7 @@ namespace MovieCollectionRevisited.Controllers
         [HttpPost]
         public IActionResult EditMovieSubmit(Movie form)
         {
-            _logger.LogDebug($"{Request.Method} on EditMovie with params: {form}.");
+            _logger.LogDebug("{1} on {2} with params: {3}", Request.Method, Request.Path.Value, form);
             // Checks if the model is valid and attempts an update.
             if(ModelState.IsValid)
             {
@@ -157,7 +147,7 @@ namespace MovieCollectionRevisited.Controllers
         [HttpGet]
         public IActionResult DeleteMovie(long MovieID)
         {
-            _logger.LogDebug($"{Request.Method} on DeleteMovie with params: {MovieID}.");
+            _logger.LogDebug("{1} on {2} with params: {3}", Request.Method, Request.Path.Value, MovieID);
             return View(_unitOfWork.MovieRepo.GetByID(MovieID));
         }
 
@@ -171,11 +161,11 @@ namespace MovieCollectionRevisited.Controllers
         [HttpPost]
         public IActionResult DeleteMovie(Movie form)
         {
-            _logger.LogDebug($"{Request.Method}  on EditMovie with params: {form}.");
+            _logger.LogDebug("{1} on {2} with params: {3}", Request.Method, Request.Path.Value, form);
             // Checks if valid object and attempts a delete.
             if(ModelState.IsValid)
             {
-                _unitOfWork.MovieRepo.Delete(form);
+                _unitOfWork.MovieRepo.Delete(form.MovieID);
                 _unitOfWork.Save();
                 return RedirectToAction("FilmList");
             }

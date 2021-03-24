@@ -61,6 +61,6 @@ namespace MovieCollectionRevisited.DAL
         /// Deletes a <typeparamref name="T"/> from the in-memory DbSet that matches the parameter PK. Requires .Save to be called to persist chanages to the Database.
         /// </summary>
         /// <param name="id">PK of the <typeparamref name="T"/> to delete.</param>
-        void Delete(object id);
+        void Delete(long id);
     }
 }

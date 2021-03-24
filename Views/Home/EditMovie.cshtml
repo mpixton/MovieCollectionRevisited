@@ -7,44 +7,92 @@ ViewData["Title"] = "Edit " + Model.Title;
 
 @model Movie
 
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-        <form asp-controller="Home" asp-action="EditMovieSubmit" method="post">
-            <input asp-for="MovieID" hidden readonly />
-
-            <label asp-for="Director">Director:</label>
-            <input asp-for="Director" />
+<form asp-controller="Home" asp-action="EditMovieSubmit" method="post" class="col">
+    <input asp-for="MovieID" hidden readonly />
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Director" class="pr-2">Director:</label>
+                <input asp-for="Director" />
+            </div>
+        </div>
+        <div class="col-12">
             @Html.ValidationMessageFor(m => m.Director)
-
-            <label asp-for="Edited">Edited?</label>
-            <input asp-for="Edited" />
-            @Html.ValidationMessageFor(m => m.Edited)
-
-            <label asp-for="LentTo">Lent To:</label>
-            <input asp-for="LentTo" />
-            @Html.ValidationMessageFor(m => m.LentTo)
-
-            <label asp-for="Notes">Notes:</label>
-            <input asp-for="Notes" />
-            @Html.ValidationMessageFor(m => m.Notes)
-
-            <label asp-for="Rating">Rating:</label>
-            @Html.DropDownListFor(m => m.Rating, Html.GetEnumSelectList(typeof(RatingTypes)), "Please choose a rating:")
-            @Html.ValidationMessageFor(m => m.Rating)
-
-            <label asp-for="Title">Title:</label>
-            <input asp-for="Title" />
-            @Html.ValidationMessageFor(m => m.Title)
-
-            <label asp-for="Year">Year:</label>
-            <input asp-for="Year" />
-            @Html.ValidationMessageFor(m => m.Year)
-
-            @Html.ValidationSummary()
-            <button class="btn btn-primary" type="submit">Add Movie</button>
-        </form>
-        <a asp-controller="Home" asp-action="FilmList" class="btn btn-primary" >Go Back</a>
+        </div>
     </div>
-    <div class="col-3"></div>
-</div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2 align-items-center">
+                <label asp-for="Edited" class="pr-2">Edited?</label>
+                <input asp-for="Edited" />
+            </div>
+        </div>
+        <div class="col-12">
+            @Html.ValidationMessageFor(m => m.Edited)
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="LentTo" class="pr-2">Lent To:</label>
+                <input asp-for="LentTo" />
+            </div>
+        </div>
+        <div class="col-12">
+            @Html.ValidationMessageFor(m => m.LentTo)
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Notes" class="pr-2">Notes:</label>
+                <input asp-for="Notes" />
+            </div>
+        </div>
+        <div class="col-12">
+            @Html.ValidationMessageFor(m => m.Notes)
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Rating" class="pr-2">Rating:</label>
+                @Html.DropDownListFor(m => m.Rating, Html.GetEnumSelectList(typeof(RatingTypes)), "Please choose a rating:")
+            </div>
+        </div>
+        <div class="col-12">
+            @Html.ValidationMessageFor(m => m.Rating)
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Title" class="pr-2">Title:</label>
+                <input asp-for="Title" />
+            </div>
+        </div>
+        <div class="col-12">
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Year" class="pr-2">Year:</label>
+                <input asp-for="Year" />
+            </div>
+        </div>
+        <div class="col-12">
+            @Html.ValidationMessageFor(m => m.Year)
+        </div>
+    </div>
+    <div class="row">
+        @Html.ValidationSummary()
+    </div>
+    <div class="col-4 offset-4">
+        <div class="row justify-content-around">
+            <button class="btn btn-success" type="submit">Update Movie</button>
+            <a asp-controller="Home" asp-action="FilmList" class="btn btn-danger">Go Back</a>
+        </div>
+    </div>
+</form>

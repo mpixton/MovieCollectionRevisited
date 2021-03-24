@@ -7,44 +7,68 @@
 
 @model Movie
 @*// TODO: Refactor out the form controls and leave the key.*@
-<form class="col-8" asp-controller="Home" asp-action="DeleteMovie" method="post">
+<form asp-controller="Home" asp-action="DeleteMovie" method="post" class="col">
     <input asp-for="MovieID" hidden readonly />
-    <div class="row">
-        <label class="col" asp-for="Director">Director:</label>
-        <input class="col" asp-for="Director" readonly />
-    </div>
-    <div class="row">
-        <label asp-for="Edited">Edited?</label>
-        <input asp-for="Edited" readonly />
-    </div>
-    <div class="row">
-        <label asp-for="LentTo">Lent To:</label>
-        <input asp-for="LentTo" readonly />
-    </div>
-    <div class="row">
-        <label asp-for="Notes">Notes:</label>
-        <input asp-for="Notes" readonly />
-    </div>
-    <div class="row">
-        <label asp-for="Rating">Rating:</label>
-        <input asp-for="Rating" readonly />
-    </div>
-    <div class="row">
-        <label asp-for="Title">Title:</label>
-        <input asp-for="Title" readonly />
-    </div>
-    <div class="row">
-        <label asp-for="Year">Year:</label>
-        <input asp-for="Year" readonly />
-    </div>
-
-    <div class="col-8">
-        <div class="row">
-            <span class="col-12">Delete Movie?</span>
-        </div>
+    <div class="row justify-content-center pb-2">
         <div class="col-12">
-            <button class="btn btn-success">Yes</button>
-            <button class="btn btn-danger">No</button>
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Director" class="pr-2">Director:</label>
+                <input asp-for="Director" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2 align-items-center">
+                <label asp-for="Edited" class="pr-2">Edited?</label>
+                <input asp-for="Edited" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="LentTo" class="pr-2">Lent To:</label>
+                <input asp-for="LentTo" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Notes" class="pr-2">Notes:</label>
+                <input asp-for="Notes" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Rating" class="pr-2">Rating:</label>
+                @Html.DropDownListFor(m => m.Rating, Html.GetEnumSelectList(typeof(RatingTypes)), "Please choose a rating:")
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Title" class="pr-2">Title:</label>
+                <input asp-for="Title" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pb-2">
+        <div class="col-12">
+            <div class="row justify-content-center pb-2">
+                <label asp-for="Year" class="pr-2">Year:</label>
+                <input asp-for="Year" />
+            </div>
+        </div>
+    </div>
+    <div class="col-4 offset-4">
+        <div class="row justify-content-around">
+            <button class="btn btn-danger" type="submit">Delete Movie</button>
+            <a asp-controller="Home" asp-action="FilmList" class="btn btn-success">Go Back</a>
         </div>
     </div>
 </form>

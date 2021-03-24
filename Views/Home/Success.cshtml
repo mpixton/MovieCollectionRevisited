@@ -2,9 +2,15 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Successful Addition";
 }
 
-<div>
+@model String;
+
+<div class="text-center">
+    Congratulations! @Model was just added to the collection.
+</div>
+<div class="d-flex justify-content-around">
     <a asp-controller="Home" asp-action="Home" class="btn btn-primary">Go Home</a>
     <a asp-controller="Home" asp-action="AddMovie" class="btn btn-primary">Add Another Movie</a>
     <a asp-controller="Home" asp-action="FilmList" class="btn btn-primary">View All Movies</a>

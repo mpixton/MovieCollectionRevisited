@@ -2,37 +2,37 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "The Movie Collection";
 }
 
 @model IEnumerable<Movie>
 
 <div>
-    <table class="col-12">
-        <thead class="col-8">
+    <table class="col-12 thead-dark">
+        <thead class="col-12">
             <tr class="row">
-                <th class="text-center">
+                <th class="text-center col-2">
                     <h3>Title</h3>
                 </th>
-                <th class="text-center">
+                <th class="text-center col-2">
                     <h3>Director</h3>
                 </th>
-                <th class="text-center">
+                <th class="text-center col-1">
                     <h3>Year</h3>
                 </th>
-                <th class="text-center">
+                <th class="text-center col-1">
                     <h3>Rating</h3>
                 </th>
-                <th class="text-center">
+                <th class="text-center col-1">
                     <h3>Edited?</h3>
                 </th>
-                <th class="text-center">
+                <th class="text-center col-2">
                     <h3>Lent To</h3>
                 </th>
-                <th class="text-center">
+                <th class="text-center col-2">
                     <h3>Notes</h3>
                 </th>
-                <th class="text-center">
-                    <h3></h3>
+                <th class="text-center col-1">
                 </th>
             </tr>
         </thead>
@@ -41,16 +41,20 @@
             @foreach(Movie m in Model)
             {
                 <tr class="row">
-                    <td style="font-size: 1.5rem">@m.Title</td>
-                    <td style="font-size: 1.5rem">@m.Director</td>
-                    <td style="font-size: 1.5rem">@m.Year</td>
-                    <td style="font-size: 1.5rem">@m.Rating</td>
-                    <td style="font-size: 1.5rem">@(m.Edited ? "Yes" : "No")</td>
-                    <td style="font-size: 1.5rem">@m.LentTo</td>
-                    <td style="font-size: 1.5rem">@m.Notes</td>
-                    <td style="font-size: 1.5rem">
-                        <partial name="_MovieEditButton" model="m" />
-                        <partial name="_MovieDeleteButton" model="m" />
+                    <td style="font-size: 1.15rem" class="col-2">@m.Title</td>
+                    <td style="font-size: 1.15rem" class="col-2">@m.Director</td>
+                    <td style="font-size: 1.15rem" class="col-1">@m.Year</td>
+                    <td style="font-size: 1.15rem" class="col-1">@m.Rating</td>
+                    <td style="font-size: 1.15rem" class="col-1">@(m.Edited ? "Yes" : "No")</td>
+                    <td style="font-size: 1.15rem" class="col-2">@m.LentTo</td>
+                    <td style="font-size: 1.15rem" class="col-2">@m.Notes</td>
+                    <td style="font-size: 1.15rem" class="col-1">
+                        <div class="pb-1">
+                            <partial name="_MovieEditButton" model="m" />
+                        </div>
+                        <div class="pb-1">
+                            <partial name="_MovieDeleteButton" model="m" />
+                        </div>
                     </td>
                 </tr>
              }
